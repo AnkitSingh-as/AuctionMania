@@ -118,7 +118,7 @@ passport.use(
 );
 
 // Have Node serve the files for React app
-res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 // check if logged in
 loggedIn = (req, res, next) => {
@@ -307,7 +307,7 @@ app.post("/register", (req, res) => {
 // app.use(express.static(path.join(__dirname, "client", "build")))
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  app.use(express.static(path.join(__dirname, "client", "build")));
 });
 
 app.listen(PORT, () => {
